@@ -7,11 +7,8 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.vuejs.cordova"
-    },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.vuejs.cordova"
+      "PACKAGE_NAME": "io.emjimadhu.chatly"
     }
   },
   "dependent_plugins": {}

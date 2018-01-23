@@ -1,6 +1,6 @@
-# vuejs-cordova-boilerplate
+# vuetify-websockets-cordova
 
-> A Vue.js Cordova Implementation.
+> A Vuetify.js, Websockets and Cordova Implementation
 
 ## Build Setup
 
