@@ -6,7 +6,6 @@ import VueWebsocket from 'vue-websocket'
 import App from './App'
 import router from './router'
 import store from './store'
-
 import firebase from 'firebase'
 import consts from '@/utils/consts'
 

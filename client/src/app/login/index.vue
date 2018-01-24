@@ -6,13 +6,13 @@
           <h3 class="primary--text">Login</h3>
         </v-card-text>
         <v-layout row wrap>
-          <v-text-field
+          <!-- <v-text-field
             label="Username"
             v-model="username"
             required
             light
             @keyup.enter="signin"
-          />
+          /> -->
           <v-flex xs12>
             <v-btn color="red" block @click="googleLogin">
               sign in with google
@@ -24,11 +24,11 @@
             </v-btn>
           </v-flex> -->
         </v-layout>
-        <v-layout row>
+        <!-- <v-layout row>
           <v-btn color="primary" @click="signin">
             Login
           </v-btn>
-        </v-layout>
+        </v-layout> -->
       </v-card>
     </v-container>
 
@@ -100,6 +100,7 @@ export default {
           }
         })
         .catch((error) => {
+          console.log(error)
           this.alert = true
           this.alertColor = 'error'
 

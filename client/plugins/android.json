@@ -9,6 +9,18 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.emjimadhu.chatly"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "io.emjimadhu.chatly"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "io.emjimadhu.chatly"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "io.emjimadhu.chatly"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.emjimadhu.chatly"
     }
   },
   "dependent_plugins": {}

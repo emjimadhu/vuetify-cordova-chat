@@ -4,6 +4,19 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="BuildInfo">
+        <param name="android-package" value="org.apache.cordova.buildinfo.BuildInfo" />
+    </feature>
+    <feature name="UniversalLinks">
+        <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="BrowserTab">
+        <param name="android-package" value="com.google.cordova.plugin.browsertab.BrowserTab" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
     <name>Chatly</name>
     <description>
         A Sample Vuejs, Vuetify, Websockets, Cordova chat application.
@@ -19,6 +32,21 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <universal-links>
+        <host name="hx37y.app.goo.gl" scheme="https" />
+        <host name="chatly-16eef.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <allow-intent href="market:*" />
+    <splash density="land-hdpi" src="res/screen/android/screen-hdpi-landscape.png" />
+    <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+    <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+    <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+    <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+    <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+    <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
 </widget>

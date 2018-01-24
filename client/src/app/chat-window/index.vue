@@ -1,5 +1,43 @@
 <template lang="html">
   <div>
+    <v-navigation-drawer
+      persistent
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      v-model="drawer"
+      enable-resize-watcher
+      fixed
+      app
+      width="200"
+    >
+      <v-list>
+        <v-list-tile :to="{ name: 'profile' }">
+          <v-list-tile-action>
+            <v-icon>people</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Profile</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="logout">
+          <v-list-tile-action>
+            <v-icon>people</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
+      <v-toolbar-title>Chatly</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn flat :to="{ name: 'profile' }">Profile</v-btn>
+        <v-btn flat @click="logout">Logout</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
     <v-container fluid class="chat-window" id="chat-window">
       <v-layout
         row
@@ -52,6 +90,8 @@
 <script type="text/javascript">
 import { mapGetters } from 'vuex'
 
+import firebase from 'firebase'
+
 import chatInput from '@/components/chat-input'
 import globalAlert from '@/components/global-alert'
 
@@ -69,33 +109,41 @@ export default {
   data: () => ({
     alert: false,
     alertColor: '',
-    alertMSG: ''
+    alertMSG: '',
+    clipped: false,
+    drawer: false,
+    miniVariant: false
   }),
   methods: {
     sendMessage () {
       const authUser = this.$store.getters.authUser
       let obj = {
         text: this.$store.getters.message,
-        image: 'https://pbs.twimg.com/profile_images/378800000719389786/d630c788dd75aa3fadffe1408f3a6932.jpeg',
+        image: authUser.photoURL,
         name: authUser.displayName,
         date: new Date()
       }
       this.$socket.emit('send', obj)
       this.$store.commit('SET_MESSAGE', '')
     },
-    escapeRegExp (string) {
-      return string.replace(/[*+?^${}()|[\]\\]/g, '\\$&')
+    logout () {
+      firebase.auth().signOut()
+        .then(() => {
+          localStorage.removeItem('authUser')
+          this.$store.commit('SET_AUTHUSER', '')
+          this.$router.push({
+            name: 'login'
+          })
+        })
+        .catch((error) => {
+          this.alert = true
+          this.alertColor = 'error'
+          this.alertMSG = error.message
+        })
     }
   },
   socket: {
     events: {
-      hello (data) {
-        if (data) {
-          this.alert = true
-          this.alertColor = 'success'
-          this.alertMSG = 'Welcome to Gotham City.'
-        }
-      },
       message (data) {
         const authUser = JSON.parse(localStorage.getItem('authUser'))
         let arr = this.$store.getters.messages
